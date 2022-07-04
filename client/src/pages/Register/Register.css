@@ -1,0 +1,17 @@
+.Register {
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-container {
+    height: 45rem;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    overflow: hidden;
+    overflow-y: auto;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 1rem;
+}
