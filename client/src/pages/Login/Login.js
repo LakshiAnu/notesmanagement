@@ -18,7 +18,7 @@ function Login() {
                             <label htmlFor="password">Password</label>
                             <input type="password" className="form-control" id="password" placeholder="***********" />
                             </div>
-                            <div class="d-grid gap-2 mt-5">
+                            <div className="d-grid gap-2 mt-5">
                             <button className="btn btn-success btn-lg">Sign In</button>
                             </div>
                             <div className="mt-3">
