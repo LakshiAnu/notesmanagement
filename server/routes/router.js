@@ -38,4 +38,14 @@ router.get("/getUsers", async(req,res)=>{
     }
 })
 
+router.get("/getUser/:id", async(req,res)=>{
+    try {
+        const {id} = req.params;
+        const userData = await users.findById({_id: id});
+        res.status(201).json(userData);
+    } catch (error) {
+        res.status(422).json(error);
+    }
+})
+
 module.exports = router
