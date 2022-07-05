@@ -37,7 +37,6 @@ function Register() {
         })
 
         const data = await res.json();
-        console.log(data);
 
         if(res.status === 422 || !data){
             alert("Error: "+data);
