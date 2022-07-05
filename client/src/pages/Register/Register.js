@@ -22,6 +22,29 @@ function Register() {
             }
         });
     }
+    const addInputData = async(e) => {
+        e.preventDefault();
+        const {firstName, lastName, email, password, mobile, type, dob} = inpvalue;
+
+        const res = await fetch("http://localhost:8003/register",{
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({
+                firstName, lastName, email, password, mobile, type, dob
+            })
+        })
+
+        const data = await res.json();
+        console.log(data);
+
+        if(res.status === 422 || !data){
+            alert("Error: "+data);
+        }else{
+            alert("Successfully added");
+        }
+    }
     return (
     <div className="container">
         <div className="Register">
@@ -64,8 +87,8 @@ function Register() {
                             <input type="password" className="form-control" id="password" name="password" placeholder="***********" required value={inpvalue.password} onChange={setData} />
                         </div>
                     </div>
-                    <div class="mt-4 text-start">
-                        <button className="btn btn-success btn-lg">Create an Account</button>
+                    <div className="mt-4 text-start">
+                        <button className="btn btn-success btn-lg" onClick={addInputData}>Create an Account</button>
                     </div>
                     <div className="mt-1 text-start">
                         <p>Already have an account? <Link to="/" className="register">Sign In</Link></p>
