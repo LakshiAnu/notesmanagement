@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const DB = `mongodb+srv://admin:notesmanagement@cluster0.avjqu.mongodb.net/?retryWrites=true&w=majority`;
+const DB = `mongodb+srv://admin:notesmanagement@cluster0.avjqu.mongodb.net/notes?retryWrites=true&w=majority`;
 
 mongoose.connect(DB, {
     useNewUrlParser: true,
