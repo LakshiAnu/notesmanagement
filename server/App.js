@@ -6,6 +6,7 @@ require("./db/conn");
 const users = require("./models/userSchema");
 const cors = require("cors");
 const router = require("./routes/router");
+const notes = require("./models/noteSchema");
 
 
 const port = 8003;
