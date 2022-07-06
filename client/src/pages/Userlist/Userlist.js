@@ -1,9 +1,12 @@
 import React, {useEffect,useState} from 'react'
+import {Link} from 'react-router-dom';
 import './Userlist.css';
 import Userinfo from '../../components/Userinfo/Userinfo';
 
 function Userlist() {
     const [userData, setUserData] = useState([]);
+    const [userSingleData, setUserSingleData] = useState([]);
+    
     const getData = async() => {
         const res = await fetch("http://localhost:8003/getUsers",{
             method: "GET",
@@ -13,17 +16,32 @@ function Userlist() {
         })
 
         const data = await res.json();
-        console.log(data);
-
+        
         if(res.status === 422 || !data){
             alert("Error: "+data);
         }else{
             setUserData(data)
         }
     }
+
     useEffect(()=>{
         getData()
     },[])
+
+    const viewData = async(id) => {
+        const res = await fetch(`http://localhost:8003/getUser/${id}`,{
+            method: "GET",
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
+        const data = await res.json();
+        if(res.status === 422 || !data){
+            alert("Error: "+data);
+        }else{
+            setUserSingleData(data)
+        }
+    }
     return (
         <div className="container">
             <div className="modal" tabindex="-1" id="userModal">
@@ -34,7 +52,7 @@ function Userlist() {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <Userinfo data={userData}/>
+                            <Userinfo data={userSingleData}/>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -43,10 +61,17 @@ function Userlist() {
                 </div>
             </div>
             <div className="Userlist">
-                <h3>Users List</h3>
+                <div className="row">
+                    <div className="col-md-6 text-start">
+                        <h3>Users List</h3>
+                    </div>
+                    <div className="col-md-6 text-end">
+                        <Link to="/" className="btn btn-success">Logout</Link>
+                    </div>
+                </div>
                 <div className="table-responsive">
-                    <table className="table table-bordered table-hover bg-dark text-white">
-                        <thead>
+                    <table className="table table-bordered table-hover">
+                        <thead className="bg-dark text-white">
                             <tr>
                                 <th>First Name</th>
                                 <th>Last Name</th>
@@ -68,7 +93,8 @@ function Userlist() {
                                     <td>{users.mobile}</td>
                                     <td>{users.status === true ? 'active' : 'not active'}</td>
                                     <td>{users.type}</td>
-                                    <td><button className="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#userModal">View</button></td>
+                                    <td><button className="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#userModal"
+                                    onClick={()=>viewData(users._id)}>View</button></td>
                                 </tr>
                             ))}
                         </tbody>
