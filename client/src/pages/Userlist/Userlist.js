@@ -66,7 +66,7 @@ function Userlist() {
                         <h3>Users List</h3>
                     </div>
                     <div className="col-md-6 text-end">
-                        <Link to="/" className="btn btn-success">Logout</Link>
+                        <Link to="/" className="btn btn-warning">Logout</Link>
                     </div>
                 </div>
                 <div className="table-responsive">
