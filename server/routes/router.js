@@ -48,4 +48,14 @@ router.get("/getUser/:id", async(req,res)=>{
     }
 })
 
+router.get("/getUserLogin/:email/:password", async(req,res)=>{
+    try {
+        const {email, password} = req.params;
+        const userData = await users.findOne({email: email, password: password});
+        res.status(201).json(userData);
+    } catch (error) {
+        res.status(422).json(error);
+    }
+})
+
 module.exports = router
