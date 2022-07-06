@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import './Register.css';
-import {Link} from 'react-router-dom';
+import {Link,useNavigate} from 'react-router-dom';
 
 function Register() {
-    
+    const navigate = useNavigate();
     const [inpvalue, setInpvalue] = useState({
         firstName: "",
         lastName: "",
@@ -42,6 +42,7 @@ function Register() {
             alert("Error: "+data);
         }else{
             alert("Successfully added");
+            navigate('/');
         }
     }
     return (
@@ -53,7 +54,7 @@ function Register() {
                     <div className="col-md-6">
                         <div className="mb-3">
                             <label htmlFor="firstName">First Name</label>
-                            <input type="firstName" className="form-control" id="firstName" name="firstName" placeholder="Jane" required value={inpvalue.firstName} onChange={setData} />
+                            <input type="text" className="form-control" id="firstName" name="firstName" placeholder="Jane" required value={inpvalue.firstName} onChange={setData} />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="email">Email Address</label>
@@ -75,7 +76,7 @@ function Register() {
                     <div className="col-md-6">
                         <div className="mb-3">
                             <label htmlFor="lastName">Last Name</label>
-                            <input type="lastName" className="form-control" id="lastName" name="lastName" placeholder="Doe" required value={inpvalue.lastName} onChange={setData} />
+                            <input type="text" className="form-control" id="lastName" name="lastName" placeholder="Doe" required value={inpvalue.lastName} onChange={setData} />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="dob">Date of Birth</label>
