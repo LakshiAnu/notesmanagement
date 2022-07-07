@@ -9,21 +9,26 @@ function Login() {
 
     const signIn = async(e) => {
         e.preventDefault();
-        const res = await fetch(`http://localhost:8003/getUserLogin/${username}/${password}`,{
-            method: "GET",
-            headers: {
-                "Content-type": "application/json"
-            }
-        })
+        if(username && password){
+            const res = await fetch(`http://localhost:8003/getUserLogin/${username}/${password}`,{
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json"
+                }
+            })
 
-        const data = await res.json();
-        
-        if(res.status === 422 || !data){
-            alert("Error: "+data);
-        }else if(data.type == "admin"){
-            navigate("/userlist")
-        }else if(data.type == "user"){
-            navigate("/noteslist");
+            const data = await res.json();
+            console.log(data);
+            
+            if(res.status === 422 || !data){
+                alert("Error: "+data);
+            }else if(data.type == "admin"){
+                navigate("/userlist")
+            }else if(data.type == "user"){
+                navigate("/noteslist");
+            }
+        }else {
+            alert("Please enter your username and password");
         }
     }
     return (
