@@ -50,8 +50,11 @@ router.get("/getUser/:id", async(req,res)=>{
 })
 
 router.get("/getUserLogin/:email/:password", async(req,res)=>{
+    const {email, password} = req.params;
+    if(!email || !password){
+        res.status(422).json("Enter username and password");
+    }
     try {
-        const {email, password} = req.params;
         const userData = await users.findOne({email: email, password: password});
         if(!userData){
             res.status(422).json("User not found");
