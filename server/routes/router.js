@@ -84,13 +84,46 @@ router.post("/createNote",async(req,res)=>{
     }
 })
 
-router.get("/getNotes", async(req,res)=>{
+router.get("/getNotes/:id", async(req,res)=>{
     try {
-        const userNotes = await notes.find();
+        const {id} = req.params;
+        const userNotes = await notes.find({user: id});
         res.status(201).json(userNotes);
     } catch (error) {
         res.status(422).json(error);
     }
 })
 
-module.exports = router
+router.get("/getNote/:id", async(req,res)=>{
+    try {
+        const {id} = req.params;
+        const userNotes = await notes.findOne({_id: id});
+        res.status(201).json(userNotes);
+    } catch (error) {
+        res.status(422).json(error);
+    }
+})
+
+router.patch("/updateNote/:id",async(req,res)=>{
+    try {
+        const {id} = req.params;
+        const updatedNote = await notes.findByIdAndUpdate(id,req.body,{
+            new:true
+        });
+        res.status(201).json(updatedNote);
+    } catch (error) {
+        res.status(422).json(error);
+    }
+})
+
+router.delete("/deleteNote/:id", async(req,res)=>{
+    try {
+        const {id} = req.params;
+        const deleteNote = await notes.findByIdAndDelete({_id: id});
+        res.status(201).json(deleteNote);
+    } catch(error) {
+        res.status(422).json(error);
+    }
+})
+
+module.exports = router;
