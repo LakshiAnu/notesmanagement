@@ -26,5 +26,5 @@ This is a notes taking app. **Users** can register and login to the system and *
 > 3. Open server folder and run ``` npm install ```
 > 4. Open the client folder and run the application ``` npm start ```
 > 5. Open the server folder and run the server ``` npx nodemon app.js ```
-> 6. Run the application on **http://localhost:3000**
+> 6. Run the application on **Open [http://localhost:3000](http://localhost:3000)**
 > 7. Server running on **http://localhost:8003**
