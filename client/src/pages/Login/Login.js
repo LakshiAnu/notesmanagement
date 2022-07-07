@@ -25,7 +25,7 @@ function Login() {
             }else if(data.type == "admin"){
                 navigate("/userlist")
             }else if(data.type == "user"){
-                navigate("/noteslist");
+                navigate(`/noteslist/${data._id}`);
             }
         }else {
             alert("Please enter your username and password");
