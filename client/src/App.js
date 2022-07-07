@@ -5,6 +5,7 @@ import Register from './pages/Register/Register';
 import Userlist from './pages/Userlist/Userlist';
 import Noteslist from './pages/Noteslist/Noteslist';
 import Notescreate from './pages/Notescreate/Notescreate';
+import Notesedit from './pages/Notesedit/Notesedit';
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/userlist" element={<Userlist />} />
-        <Route path="/noteslist" element={<Noteslist />} />
-        <Route path="/notescreate" element={<Notescreate />} />
+        <Route path="/noteslist/:id" element={<Noteslist />} />
+        <Route path="/notescreate/:id" element={<Notescreate />} />
+        <Route path="/notesedit/:id/:note" element={<Notesedit />} />
       </Routes>
     </div>
   );
