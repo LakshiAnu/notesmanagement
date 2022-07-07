@@ -12,7 +12,6 @@ const noteSchema = new mongoose.Schema({
     user: {
         type: String,
         required: true,
-        unique: true
     },
     status: {
         type: Boolean,
